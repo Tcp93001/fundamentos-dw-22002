@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>Reto 1: Inflar un globo</title>
+    </head>
+    <body>
+
+        <p>🎈</p>
+
+        <script>
+        // Code goes here
+            let p = document.querySelector('p')
+            let size;
+
+            function setSize(newSize) {
+                size = newSize
+                // p.style.fontSize = size + 'px';
+                p.style.fontSize = `${size}px`;
+            }
+
+            setSize(20)
+
+            function handleArrow(event) {
+                if (event.key === 'ArrowUp') {
+                    if (size < 80) {
+                        setSize(size * 1.1)
+                        event.preventDefault()
+                    } else {
+                        p.textContent = '💥'
+                        document.body.removeEventListener('keydown', handleArrow)
+                    }
+                } else if (event.key === 'ArrowDown') {
+                    setSize(size * 0.9);
+                    event.preventDefault();
+                }
+            }
+
+            document.body.addEventListener('keydown', handleArrow)
+
+        </script>
+
+        <style>
+            body {
+                zoom: 3;
+            }
+        </style>
+    </body>
+</html>
